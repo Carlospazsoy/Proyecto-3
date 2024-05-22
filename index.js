@@ -19,32 +19,34 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(result);
         handleApiResponse(result.data, baseCurrency, quoteCurrency); })
       .catch((error) => { handleApiError(error); });
+
+
   });
 });
 
 // Funcion que renderiza en el html y muestra el grafico
+// Declarar 'chart' globalmente para usarlo en la función
+
+
 function handleApiResponse(data, baseCurrency, quoteCurrency) {
   const rateContainer = document.getElementById('rate-container');
   const rateInfo = document.getElementById('rate-info');
-  const ctx = document.getElementById('rate-chart').getContext('2d');
+  const canvas = document.getElementById('rate-chart'); // Obtener el elemento canvas
+  const ctx = canvas.getContext('2d');
+  console.log(ctx);
+  
+  // Asegurarse de que el canvas sea visible
+  canvas.classList.remove('invisible');
 
   // Nos aseguramos de limpiar el contenido anterior
-  rateInfo.innerHTML = ''; 
+  rateInfo.innerHTML = '';
   rateContainer.innerHTML = '';
 
-
   if (data && data.length > 0) {
-    // Ordenar los datos del arreglo del más viejo al más nuevo, convirtienedo dos strings en objetos de fecha
+    // Ordenar los datos del arreglo del más viejo al más nuevo
     data.sort((a, b) => new Date(a.time_period_start) - new Date(b.time_period_start));
 
-    /* const rateDetails = data.map(rate => `
-      <p>Date: ${new Date(rate.time_period_start).toLocaleDateString()}</p>
-      <p>Rate: ${rate.rate_close}</p>
-    `).join('');
-    rateContainer.innerHTML = rateDetails; */
-
-    /* Se hace un map en la rama del api que deseamos */
-    const labels = data.map(rate => new Date(rate.time_period_start).toLocaleDateString()); // Devolvemos un array con fechas en formato mas simple
+    const labels = data.map(rate => new Date(rate.time_period_start).toLocaleDateString()); // Devolvemos un array con fechas en formato más simple
     const rates = data.map(rate => rate.rate_close);
 
     // Destruir el gráfico existente si existe
@@ -70,6 +72,7 @@ function handleApiResponse(data, baseCurrency, quoteCurrency) {
     rateInfo.innerHTML = '<p>Rate information not found. Please try again.</p>';
   }
 }
+
 
 function handleApiError(error) {
   console.error('Error fetching data:', error);

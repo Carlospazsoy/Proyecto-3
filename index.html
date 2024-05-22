@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Currency Chart</h1>
+    <div class="render-container">
+      <h1>Currency Chart</h1>
     <label class="label" for="base-currency">
       <input type="text" id="base-currency" class="input" placeholder=" " />
       <span class="label__name">Enter base currency</span>
@@ -22,7 +23,9 @@
     <div id="rate-info"></div>
     <div id="rate-container"></div>
     <br>
-    <canvas id="rate-chart" width="400" height="200"></canvas>
+    <canvas class="invisible" id="rate-chart"></canvas>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="./index.js"></script>
