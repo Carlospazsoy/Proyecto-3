@@ -13,7 +13,8 @@ body {
 
 .input{
   grid-area: input;
-  width: 300px;
+  width: 50vw;
+  max-width: 300px;
   font: inherit;
   border-radius: 10px;
   border: 1px solid gray;
@@ -63,4 +64,20 @@ canvas {
   border-radius: 10px;
   padding: 0.7rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 20px;
+  }
+
+  .label {
+    max-width: 100%;
+  }
+
+  canvas {
+    max-width: 100%;
+  }
 }

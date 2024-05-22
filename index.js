@@ -6,10 +6,10 @@ let chart = null; // Variable para almacenar la instancia del gráfico
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('search-button').addEventListener('click', () => {
-    const quoteCurrency = 'mxn';
-    // const quoteCurrency = document.getElementById('quote-currency').value;
-    const baseCurrency = 'usd';
-    // const baseCurrency = document.getElementById('base-currency').value;
+    // const quoteCurrency = 'mxn';
+    const quoteCurrency = document.getElementById('quote-currency').value;
+    // const baseCurrency = 'usd';
+    const baseCurrency = document.getElementById('base-currency').value;
     const periodId = '1DAY';
     const url = `https://rest.coinapi.io/v1/exchangerate/${baseCurrency}/${quoteCurrency}/history?apikey=${apikey}&period_id=${periodId}`;
 
