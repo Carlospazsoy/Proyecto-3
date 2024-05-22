@@ -37,11 +37,11 @@ function handleApiResponse(data, baseCurrency, quoteCurrency) {
     // Ordenar los datos del arreglo del más viejo al más nuevo, convirtienedo dos strings en objetos de fecha
     data.sort((a, b) => new Date(a.time_period_start) - new Date(b.time_period_start));
 
-    const rateDetails = data.map(rate => `
+    /* const rateDetails = data.map(rate => `
       <p>Date: ${new Date(rate.time_period_start).toLocaleDateString()}</p>
       <p>Rate: ${rate.rate_close}</p>
     `).join('');
-    rateContainer.innerHTML = rateDetails;
+    rateContainer.innerHTML = rateDetails; */
 
     /* Se hace un map en la rama del api que deseamos */
     const labels = data.map(rate => new Date(rate.time_period_start).toLocaleDateString()); // Devolvemos un array con fechas en formato mas simple
